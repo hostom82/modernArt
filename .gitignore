@@ -1,0 +1,12 @@
+node_modules
+dist
+dist-ssr
+server-dist
+*.local
+.DS_Store
+.vite
+.workbuddy
+web-dist
+.partykit
+server.log
+probe.html

@@ -1,0 +1,50 @@
+{
+  "name": "modern-art-auction",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "dev:server": "cross-env TSX_TSCONFIG_PATH=./tsconfig.server.json tsx server/index.ts",
+    "dev:all": "concurrently -n web,net -c cyan,magenta \"npm:dev\" \"npm:dev:server\"",
+    "server": "cross-env TSX_TSCONFIG_PATH=./tsconfig.server.json tsx server/index.ts",
+    "build": "tsc -b && vite build",
+    "build:server": "esbuild server/index.ts --bundle --platform=node --format=esm --packages=external --alias:@=./src --outfile=server-dist/index.js",
+    "start": "node server-dist/index.js",
+    "preview": "vite preview",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "typecheck": "tsc -b --noEmit",
+    "typecheck:server": "tsc -p tsconfig.server.json --noEmit",
+    "partykit:dev": "partykit dev",
+    "partykit:deploy": "partykit deploy",
+    "deploy:online": "node scripts/deploy.mjs",
+    "deploy:railway": "railway up"
+  },
+  "dependencies": {
+    "immer": "^10.1.1",
+    "partysocket": "^1.3.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "zustand": "^4.5.5"
+  },
+  "devDependencies": {
+    "@types/node": "^22.20.1",
+    "@types/react": "^18.3.12",
+    "@types/react-dom": "^18.3.1",
+    "@types/ws": "^8.5.12",
+    "@vitejs/plugin-react": "^4.3.4",
+    "autoprefixer": "^10.4.20",
+    "concurrently": "^9.1.0",
+    "cross-env": "^7.0.3",
+    "esbuild": "^0.21.5",
+    "partykit": "^0.0.115",
+    "postcss": "^8.4.49",
+    "tailwindcss": "^3.4.17",
+    "tsx": "^4.19.2",
+    "typescript": "^5.6.3",
+    "vite": "^5.4.11",
+    "vitest": "^2.1.8",
+    "ws": "^8.18.0"
+  }
+}

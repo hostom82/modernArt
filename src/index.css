@@ -1,0 +1,83 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: dark;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+  margin: 0;
+}
+
+body {
+  background:
+    radial-gradient(1200px 800px at 80% -10%, rgba(201, 162, 39, 0.08), transparent 60%),
+    radial-gradient(900px 700px at -10% 110%, rgba(46, 111, 158, 0.1), transparent 55%),
+    #0d0d0d;
+  color: #f5f1e8;
+  font-family: 'Inter', 'PingFang SC', 'Microsoft YaHei', system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+@layer components {
+  .panel {
+    @apply rounded-xl border border-line/70 bg-charcoal/70 backdrop-blur-sm shadow-lg;
+  }
+  .panel-title {
+    @apply flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.18em] text-muted;
+  }
+  .btn {
+    @apply inline-flex items-center justify-center gap-1.5 rounded-lg px-3 py-2 text-sm font-medium
+      transition-all duration-150 select-none disabled:cursor-not-allowed disabled:opacity-40;
+  }
+  .btn-gold {
+    @apply btn bg-gold text-ink hover:bg-goldsoft active:scale-[0.98] font-semibold;
+  }
+  .btn-ghost {
+    @apply btn border border-line/80 text-cream/90 hover:border-gold/60 hover:bg-slate2/60;
+  }
+  .btn-danger {
+    @apply btn border border-red-500/40 text-red-300 hover:bg-red-500/10;
+  }
+  .chip {
+    @apply inline-flex items-center gap-1 rounded-full border border-line/70 bg-slate2/50 px-2 py-0.5 text-[11px] font-medium text-cream/80;
+  }
+  .tag-gold {
+    @apply inline-flex items-center gap-1 rounded-full bg-gold/15 px-2 py-0.5 text-[11px] font-semibold text-gold;
+  }
+  .stat {
+    @apply font-mono tabular-nums;
+  }
+  .scroll-soft {
+    scrollbar-width: thin;
+    scrollbar-color: #3a3a3a transparent;
+  }
+  .scroll-soft::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+  .scroll-soft::-webkit-scrollbar-thumb {
+    background: #333;
+    border-radius: 8px;
+  }
+  .scroll-soft::-webkit-scrollbar-track {
+    background: transparent;
+  }
+}
+
+.brush-title {
+  font-family: 'Playfair Display', Georgia, 'Songti SC', serif;
+}
+
+.text-shadow-soft {
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.6);
+}
+
+.plank {
+  background-image: linear-gradient(180deg, rgba(255, 255, 255, 0.03), rgba(0, 0, 0, 0.18));
+}
