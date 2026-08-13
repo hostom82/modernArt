@@ -12,8 +12,10 @@ import { MarketPanel } from '@/components/board/MarketPanel';
 import { AuctionHall } from '@/components/board/AuctionHall';
 import { HandArea } from '@/components/board/HandArea';
 import { GameLog, GameLogPanel } from '@/components/board/GameLog';
+import { MobileGameLayout } from '@/components/board/MobileGameLayout';
 import { ToastHost } from '@/components/ui/Toast';
 import { Modal } from '@/components/ui/Modal';
+import { useIsMobile } from '@/hooks/useIsMobile';
 
 export default function App() {
   const game = useGameStore((s) => s.game);
@@ -22,6 +24,7 @@ export default function App() {
   const mySeat = useGameStore((s) => s.mySeat);
   const showLog = useGameStore((s) => s.showLog);
   const setShowLog = useGameStore((s) => s.setShowLog);
+  const isMobile = useIsMobile();
 
   // 主菜单：还没有开局；联机模式已进房间但还没开局时显示大厅
   if (!game) {
@@ -60,6 +63,34 @@ export default function App() {
 
   // 对局中
   const activeId = actingHuman(game, mySeat)?.id;
+
+  // 手机竖屏（<640px）：专用堆叠布局（顶栏 + 对手条 + 标签内容 + 固定手牌 + 底部标签栏）
+  if (isMobile) {
+    return (
+      <>
+        <MobileGameLayout game={game} activeId={activeId} />
+        <RoundScoring game={game} />
+        <RulesPage />
+        <Tutorial />
+        <ToastHost />
+        <Modal
+          open={showLog}
+          onClose={() => setShowLog(false)}
+          title="牌局日志"
+          size="md"
+          footer={
+            <button className="btn-ghost w-full" onClick={() => setShowLog(false)}>
+              关闭
+            </button>
+          }
+        >
+          <div className="h-[60vh]">
+            <GameLog game={game} />
+          </div>
+        </Modal>
+      </>
+    );
+  }
 
   return (
     <div className="flex h-[100dvh] flex-col bg-gradient-to-b from-ink via-charcoal to-ink">

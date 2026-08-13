@@ -184,7 +184,12 @@ function TurnHint({ game }: { game: GameState }) {
       </p>
       <div className="mt-2 flex items-center justify-center gap-3 text-[11px] text-muted">
         <span>
-          现金 <span className="stat text-gold">{money(cur.cash)}</span>
+          现金{' '}
+          {(cur as Player & { cashHidden?: boolean }).cashHidden ? (
+            <span className="stat text-cream/70">🔒</span>
+          ) : (
+            <span className="stat text-gold">{money(cur.cash)}</span>
+          )}
         </span>
         <span>
           手牌 <span className="stat text-cream">{(cur as Player & { handCount?: number }).handCount ?? cur.hand.length}</span>

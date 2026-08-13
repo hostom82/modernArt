@@ -9,7 +9,7 @@ import { cx, money } from '@/utils/format';
 
 type SortMode = 'artist' | 'type';
 
-export function HandArea({ game }: { game: GameState }) {
+export function HandArea({ game, mobile }: { game: GameState; mobile?: boolean }) {
   const dispatch = useGameStore((s) => s.dispatch);
   const selectedId = useGameStore((s) => s.selectedArtworkId);
   const selectArtwork = useGameStore((s) => s.selectArtwork);
@@ -51,7 +51,7 @@ export function HandArea({ game }: { game: GameState }) {
   const selected = selectedId && owner.hand.includes(selectedId) ? game.artworks[selectedId] : undefined;
 
   return (
-    <section className="panel flex min-h-0 flex-col">
+    <section className={cx('panel flex min-h-0 flex-col', mobile && 'h-full overflow-hidden')}>
       {/* 头部 */}
       <div className="flex shrink-0 flex-wrap items-center gap-2 border-b border-line/60 px-3.5 py-2.5">
         <h2 className="panel-title">
@@ -94,7 +94,12 @@ export function HandArea({ game }: { game: GameState }) {
       </div>
 
       {/* 牌 */}
-      <div className="scroll-soft min-h-0 flex-1 overflow-x-auto overflow-y-hidden px-3 py-3">
+      <div
+        className={cx(
+          'scroll-soft min-h-0 flex-1 overflow-x-auto px-3 py-3',
+          mobile ? 'overflow-y-auto' : 'overflow-y-hidden',
+        )}
+      >
         {owner.hand.length === 0 ? (
           <div className="flex h-full min-h-[100px] items-center justify-center text-[12px] text-muted">
             手牌已出完 · 本轮你不再出牌，但仍可竞买

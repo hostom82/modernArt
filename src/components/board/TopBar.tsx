@@ -3,7 +3,7 @@ import { useGameStore } from '@/store/gameStore';
 import { phaseLabel } from '@/store/selectors';
 import { cx } from '@/utils/format';
 
-export function TopBar({ game }: { game: GameState }) {
+export function TopBar({ game, mobile }: { game: GameState; mobile?: boolean }) {
   const paused = useGameStore((s) => s.paused);
   const fast = useGameStore((s) => s.fast);
   const setPaused = useGameStore((s) => s.setPaused);
@@ -79,7 +79,7 @@ export function TopBar({ game }: { game: GameState }) {
             />
           </>
         )}
-        <IconBtn onClick={() => setShowLog(true)} title="牌局日志" label="☰" />
+        {!mobile && <IconBtn onClick={() => setShowLog(true)} title="牌局日志" label="☰" />}
         <IconBtn onClick={() => setShowRules(true)} title="规则" label="?" />
         <button
           className="btn-ghost px-2.5 py-1.5 text-xs"

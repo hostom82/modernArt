@@ -1,9 +1,11 @@
 import type { AiLevel, GameState, Player } from '@/types/game';
 import type { GameAction } from '@/types/actions';
 
-/** 投影后的玩家：手牌对其他人隐藏，仅保留 handCount */
+/** 投影后的玩家：手牌对其他人隐藏，仅保留 handCount；现金对其他人隐藏 */
 export interface ClientPlayer extends Player {
   handCount: number;
+  /** 联机模式下，非本人的现金被隐藏（数据不下发，仅留占位标记） */
+  cashHidden?: boolean;
 }
 
 /** 客户端看到的局面：战争迷雾已 applied（他人手牌清空、暗标未揭示时只留本人报价） */

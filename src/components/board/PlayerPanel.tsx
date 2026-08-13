@@ -55,6 +55,7 @@ function PlayerRow({
   const type = activeAuctionType(game);
   const holdings = purchasedByArtist(game, player);
   const est = estimatedHoldingsValue(game, player);
+  const cashHidden = (player as Player & { cashHidden?: boolean }).cashHidden;
 
   // 竞价状态
   let bidTag: { text: string; tone: 'gold' | 'muted' | 'dim' } | undefined;
@@ -110,7 +111,13 @@ function PlayerRow({
         </div>
 
         <div className="shrink-0 text-right">
-          <div className="stat text-sm font-bold text-gold">{money(player.cash)}</div>
+          {cashHidden ? (
+            <div className="stat text-sm font-bold text-muted/70" title="资金对其他玩家隐藏">
+              🔒
+            </div>
+          ) : (
+            <div className="stat text-sm font-bold text-gold">{money(player.cash)}</div>
+          )}
           {est > 0 && (
             <div className="stat text-[10px] text-muted" title="本轮收藏若此刻结算的估值">
               +{money(est)}?
