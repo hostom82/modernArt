@@ -72,7 +72,9 @@ export function OpenAuction({ game }: { game: GameState }) {
               )}
             >
               {p.name}
-              <span className="ml-1 font-mono text-[10px] opacity-70">{money(p.cash)}</span>
+              <span className="ml-1 font-mono text-[10px] opacity-70">
+                {p.cashHidden ? '🔒' : money(p.cash)}
+              </span>
             </button>
           ))}
         </div>

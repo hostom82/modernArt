@@ -105,7 +105,7 @@ export function HandArea({ game, mobile }: { game: GameState; mobile?: boolean }
             手牌已出完 · 本轮你不再出牌，但仍可竞买
           </div>
         ) : (
-          <div className="flex h-full items-end gap-2 pb-1">
+          <div className={cx('flex items-end gap-2 pb-1', !mobile && 'h-full')}>
             {sorted.map((id) => (
               <ArtworkCard
                 key={id}

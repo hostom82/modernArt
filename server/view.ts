@@ -9,12 +9,19 @@ import type { ClientPlayer, ClientView } from '@/shared/protocol';
  * 服务端据此为每位连接者发送各自独立的 sync。
  */
 export function projectView(state: GameState, mySeat: number): ClientView {
+  // 结算与终局属于「公开计分」阶段，放开战争迷雾（含他人资金），
+  // 以便评分屏/终局榜展示真实资金；对局进行中则对其他人隐藏手牌与资金。
+  const reveal =
+    state.phase === 'GAME_END' ||
+    state.phase === 'ROUND_SCORING' ||
+    state.phase === 'SELL_ARTWORK';
+
   const players: ClientPlayer[] = state.players.map((p) => {
     const isMe = p.seatIndex === mySeat;
     const handCount = p.hand.length;
-    if (isMe) return { ...p, handCount };
-    // 对手：清空手牌、抹掉现金，避免信息泄露
-    return { ...p, hand: [], handCount, cashHidden: true, cash: 0 };
+    if (isMe || reveal) return { ...p, handCount };
+    // 非本人 + 对局进行中：清空手牌、置零并标记资金（真实余额根本不下发）
+    return { ...p, hand: [], handCount, cash: 0, cashHidden: true };
   });
 
   let next: GameState & { players: ClientPlayer[] } = { ...state, players };

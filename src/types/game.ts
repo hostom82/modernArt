@@ -55,6 +55,12 @@ export interface Player {
   aiLevel?: AiLevel;
   /** 现金，单位 k€，恒为整数 */
   cash: number;
+  /**
+   * 联机模式下，服务端投影会给「非本人」玩家打此标记（true），
+   * 其 cash 同时被置 0，客户端应显示锁定占位而非真实资金。
+   * 单机/结算/终局阶段此字段为 undefined，表示资金可见。
+   */
+  cashHidden?: boolean;
   /** 手牌（artworkId 列表） */
   hand: string[];
   /** 本轮已买到、尚未卖出的作品 */

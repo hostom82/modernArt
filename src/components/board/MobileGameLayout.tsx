@@ -44,8 +44,8 @@ export function MobileGameLayout({
         )}
       </main>
 
-      {/* 固定手牌区（始终可见），高度封顶，避免挤出底部标签栏 */}
-      <div className="min-h-0 max-h-[280px] shrink-0">
+      {/* 固定手牌区（始终可见），确定高度封顶，避免挤出底部标签栏 */}
+      <div className="h-[32vh] min-h-[190px] max-h-[300px] shrink-0">
         <HandArea game={game} mobile />
       </div>
 
