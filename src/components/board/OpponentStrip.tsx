@@ -77,15 +77,21 @@ function OpponentChip({
         <span className="stat text-[10px] text-muted">🂠{handCount}</span>
       </div>
 
-      <div className="flex min-h-[12px] flex-wrap gap-0.5">
-        {holdings.map((h) => (
-          <span
-            key={h.artistId}
-            className="h-2 w-2 rounded-[2px]"
-            style={{ backgroundColor: game.artists[h.artistId].color }}
-            title={`${game.artists[h.artistId].name} ×${h.ids.length}`}
-          />
-        ))}
+      <div className="flex min-h-[12px] flex-wrap items-center gap-1">
+        {holdings.map((h) => {
+          const c = game.artists[h.artistId].color;
+          return (
+            <span
+              key={h.artistId}
+              className="flex items-center gap-0.5 rounded px-1 py-px text-[9px] font-bold"
+              style={{ backgroundColor: `${c}22`, color: c }}
+              title={`${game.artists[h.artistId].name} ×${h.ids.length}`}
+            >
+              <span className="h-1.5 w-1.5 rounded-[1px]" style={{ backgroundColor: c }} />
+              {h.ids.length}
+            </span>
+          );
+        })}
       </div>
 
       {(isAuctioneer || isCoAuctioneer) && (
