@@ -69,7 +69,7 @@ function Stage({ game, artworkIds }: { game: GameState; artworkIds: string[] }) 
   const isPending = !!game.pendingDouble;
 
   return (
-    <div className="relative shrink-0 overflow-hidden bg-gradient-to-b from-ink/80 to-charcoal/40 px-4 py-4">
+    <div className="relative shrink-0 overflow-hidden bg-gradient-to-b from-ink/80 to-charcoal/40 px-4 py-2.5">
       {/* 聚光灯 */}
       <div
         className="pointer-events-none absolute inset-x-0 -top-12 h-40 opacity-60"
@@ -84,14 +84,14 @@ function Stage({ game, artworkIds }: { game: GameState; artworkIds: string[] }) 
             <ArtworkCard
               artwork={game.artworks[id]}
               artist={game.artists[game.artworks[id].artistId]}
-              size="md"
+              size="sm"
               spotlight
             />
           </div>
         ))}
         {isPending && (
-          <div className="flex h-[168px] w-32 flex-col items-center justify-center rounded-lg border-2 border-dashed border-[#7D3CB5]/50 text-center">
-            <span className="text-2xl text-[#B9A2DA]/70">＋</span>
+          <div className="flex h-[128px] w-24 flex-col items-center justify-center rounded-lg border-2 border-dashed border-[#7D3CB5]/50 text-center">
+            <span className="text-xl text-[#B9A2DA]/70">＋</span>
             <span className="mt-1 px-2 text-[10px] leading-tight text-muted">
               等待追加
               <br />
@@ -102,7 +102,7 @@ function Stage({ game, artworkIds }: { game: GameState; artworkIds: string[] }) 
       </div>
 
       {/* 拍品信息 */}
-      <div className="relative mt-3 text-center">
+      <div className="relative mt-2 text-center">
         <div className="flex flex-wrap items-center justify-center gap-x-2 gap-y-0.5 text-[11px]">
           <span className="text-muted">拍卖师</span>
           <span className="font-semibold text-cream">{auctioneer?.name}</span>
