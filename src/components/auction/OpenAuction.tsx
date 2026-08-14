@@ -31,15 +31,15 @@ export function OpenAuction({ game }: { game: GameState }) {
     : undefined;
 
   return (
-    <div className="space-y-3">
+    <div className="space-y-2">
       {/* 倒计时 + 当前最高价 */}
-      <div className="flex items-center gap-3 rounded-lg border border-line/60 bg-ink/50 p-3">
+      <div className="flex items-center gap-3 rounded-lg border border-line/60 bg-ink/50 p-2.5">
         <Countdown ratio={ratio} seconds={seconds} urgent={urgent} paused={paused} />
         <div className="min-w-0 flex-1">
           <div className="text-[11px] uppercase tracking-widest text-muted">当前最高价</div>
           <div
             className={cx(
-              'stat text-2xl font-bold leading-tight transition-colors',
+              'stat text-xl font-bold leading-tight transition-colors',
               auction.currentHighestBid > 0 ? 'text-gold' : 'text-muted/60',
             )}
           >
@@ -65,7 +65,7 @@ export function OpenAuction({ game }: { game: GameState }) {
               key={p.id}
               onClick={() => setActiveId(p.id)}
               className={cx(
-                'flex-1 rounded-md border px-2 py-1.5 text-[12px] font-medium transition',
+                'flex-1 rounded-md border px-2 py-1 text-[12px] font-medium transition',
                 p.id === activeId
                   ? 'border-gold bg-gold/15 text-gold'
                   : 'border-line/70 text-cream/70 hover:border-gold/40',
@@ -133,7 +133,7 @@ function Countdown({
   const C = 2 * Math.PI * R;
 
   return (
-    <div className="relative h-16 w-16 shrink-0">
+    <div className="relative h-14 w-14 shrink-0">
       <svg viewBox="0 0 64 64" className="h-full w-full -rotate-90">
         <circle cx="32" cy="32" r={R} fill="none" stroke="#333" strokeWidth="4" />
         <circle

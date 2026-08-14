@@ -13,11 +13,11 @@ export function AuctionResult({ game }: { game: GameState }) {
   const co = out.coAuctioneerId ? game.players.find((p) => p.id === out.coAuctioneerId) : undefined;
 
   return (
-    <div className="space-y-3 animate-popIn">
+    <div className="space-y-2 animate-popIn">
       {/* 落槌横幅 */}
       <div
         className={cx(
-          'relative overflow-hidden rounded-lg border p-4 text-center',
+          'relative overflow-hidden rounded-lg border p-3 text-center',
           out.voided
             ? 'border-red-500/40 bg-red-950/25'
             : out.free

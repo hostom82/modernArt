@@ -29,7 +29,7 @@ export function AuctionHall({ game }: { game: GameState }) {
       )}
 
       {/* 交互区 */}
-      <div className="scroll-soft min-h-0 flex-1 overflow-y-auto border-t border-line/60 p-3">
+      <div className="scroll-soft min-h-0 flex-1 overflow-y-auto border-t border-line/60 p-2">
         {phase === 'AUCTION_RESULT' && <AuctionResult game={game} />}
         {(phase === 'AUCTION_DOUBLE_WAIT' || phase === 'AUCTION_DOUBLE_SELECT') && (
           <DoublePrompt game={game} />
@@ -78,47 +78,50 @@ function Stage({ game, artworkIds }: { game: GameState; artworkIds: string[] }) 
         }}
       />
 
-      <div className="relative flex items-center justify-center gap-3">
-        {artworkIds.map((id, i) => (
-          <div key={id} className="animate-flipIn" style={{ animationDelay: `${i * 90}ms` }}>
-            <ArtworkCard
-              artwork={game.artworks[id]}
-              artist={game.artists[game.artworks[id].artistId]}
-              size="sm"
-              spotlight
-            />
-          </div>
-        ))}
-        {isPending && (
-          <div className="flex h-[128px] w-24 flex-col items-center justify-center rounded-lg border-2 border-dashed border-[#7D3CB5]/50 text-center">
-            <span className="text-xl text-[#B9A2DA]/70">＋</span>
-            <span className="mt-1 px-2 text-[10px] leading-tight text-muted">
-              等待追加
-              <br />
-              第二幅
-            </span>
-          </div>
-        )}
-      </div>
-
-      {/* 拍品信息 */}
-      <div className="relative mt-2 text-center">
-        <div className="flex flex-wrap items-center justify-center gap-x-2 gap-y-0.5 text-[11px]">
-          <span className="text-muted">拍卖师</span>
-          <span className="font-semibold text-cream">{auctioneer?.name}</span>
-          {co && (
-            <>
-              <span className="text-muted">·</span>
-              <span className="text-muted">共同拍卖师</span>
-              <span className="font-semibold text-cream">{co.name}</span>
-            </>
+      <div className="relative flex items-center gap-4">
+        {/* 画作 */}
+        <div className="flex shrink-0 items-center gap-3">
+          {artworkIds.map((id, i) => (
+            <div key={id} className="animate-flipIn" style={{ animationDelay: `${i * 90}ms` }}>
+              <ArtworkCard
+                artwork={game.artworks[id]}
+                artist={game.artists[game.artworks[id].artistId]}
+                size="sm"
+                spotlight
+              />
+            </div>
+          ))}
+          {isPending && (
+            <div className="flex h-[128px] w-24 flex-col items-center justify-center rounded-lg border-2 border-dashed border-[#7D3CB5]/50 text-center">
+              <span className="text-xl text-[#B9A2DA]/70">＋</span>
+              <span className="mt-1 px-2 text-[10px] leading-tight text-muted">
+                等待追加
+                <br />
+                第二幅
+              </span>
+            </div>
           )}
         </div>
-        <div className="mt-1.5 inline-flex items-center gap-1.5 rounded-full border border-gold/30 bg-gold/[0.08] px-3 py-1">
-          <span className="text-sm text-gold">{AUCTION_TYPE_ICON[type]}</span>
-          <span className="text-[12px] font-semibold text-gold">{AUCTION_TYPE_LABEL[type]}</span>
+
+        {/* 拍品信息（画作右侧） */}
+        <div className="relative min-w-0 flex-1">
+          <div className="flex flex-wrap items-center gap-x-2 gap-y-0.5 text-[11px]">
+            <span className="text-muted">拍卖师</span>
+            <span className="font-semibold text-cream">{auctioneer?.name}</span>
+            {co && (
+              <>
+                <span className="text-muted">·</span>
+                <span className="text-muted">共同拍卖师</span>
+                <span className="font-semibold text-cream">{co.name}</span>
+              </>
+            )}
+          </div>
+          <div className="mt-1.5 inline-flex items-center gap-1.5 rounded-full border border-gold/30 bg-gold/[0.08] px-3 py-1">
+            <span className="text-sm text-gold">{AUCTION_TYPE_ICON[type]}</span>
+            <span className="text-[12px] font-semibold text-gold">{AUCTION_TYPE_LABEL[type]}</span>
+          </div>
+          <p className="mt-1 text-[11px] leading-snug text-muted">{AUCTION_TYPE_DESC[type]}</p>
         </div>
-        <p className="mt-1 text-[11px] text-muted">{AUCTION_TYPE_DESC[type]}</p>
       </div>
     </div>
   );
@@ -151,7 +154,7 @@ function TurnHint({ game }: { game: GameState }) {
 
   if (cur.type === 'AI') {
     return (
-      <div className="flex items-center justify-center gap-2 py-4 text-[12px] text-muted">
+      <div className="flex items-center justify-center gap-2 py-2.5 text-[12px] text-muted">
         <span className="flex gap-1">
           {[0, 1, 2].map((i) => (
             <span
@@ -168,21 +171,21 @@ function TurnHint({ game }: { game: GameState }) {
 
   if ((cur as Player & { handCount?: number }).handCount ?? cur.hand.length === 0) {
     return (
-      <div className="rounded-lg border border-dashed border-line/60 py-4 text-center text-[12px] text-muted">
+      <div className="rounded-lg border border-dashed border-line/60 py-2.5 text-center text-[12px] text-muted">
         你已没有手牌，本轮不再出牌（但仍可竞买）
       </div>
     );
   }
 
   return (
-    <div className="rounded-lg border border-gold/30 bg-gold/[0.06] px-3 py-3 text-center">
-      <div className="text-[13px] font-semibold text-gold">轮到 {cur.name} 出牌</div>
-      <p className="mt-1 text-[11px] leading-relaxed text-cream/70">
-        从下方手牌中选择一幅推上拍卖台。
-        <br />
-        你将成为拍卖师，成交款归你——除非你自己拍下。
-      </p>
-      <div className="mt-2 flex items-center justify-center gap-3 text-[11px] text-muted">
+      <div className="rounded-lg border border-gold/30 bg-gold/[0.06] px-2.5 py-2 text-center">
+        <div className="text-[13px] font-semibold text-gold">轮到 {cur.name} 出牌</div>
+        <p className="mt-1 text-[11px] leading-relaxed text-cream/70">
+          从下方手牌中选择一幅推上拍卖台。
+          <br />
+          你将成为拍卖师，成交款归你——除非你自己拍下。
+        </p>
+        <div className="mt-2 flex items-center justify-center gap-3 text-[11px] text-muted">
         <span>
           现金{' '}
           {(cur as Player & { cashHidden?: boolean }).cashHidden ? (

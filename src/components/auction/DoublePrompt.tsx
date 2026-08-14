@@ -26,9 +26,9 @@ export function DoublePrompt({ game }: { game: GameState }) {
   const isMe = askedId ? isLocalActor(game, mySeat, askedId) : false;
 
   return (
-    <div className="space-y-3">
+    <div className="space-y-2">
       {/* 说明 */}
-      <div className="rounded-lg border border-[#7D3CB5]/40 bg-[#7D3CB5]/[0.08] p-3">
+      <div className="rounded-lg border border-[#7D3CB5]/40 bg-[#7D3CB5]/[0.08] p-2.5">
         <div className="mb-1 flex items-center gap-2">
           <span className="text-base text-[#B9A2DA]">═</span>
           <span className="text-[13px] font-semibold text-cream">联合拍卖</span>
@@ -77,7 +77,7 @@ export function DoublePrompt({ game }: { game: GameState }) {
 
       {/* 操作 */}
       {isMe && asked ? (
-        <div className="space-y-2.5">
+        <div className="space-y-2">
           <div className="text-[12px] text-cream">
             <span className="font-semibold text-gold">{asked.name}</span>
             ，选择一幅追加，或者放弃：
@@ -108,7 +108,7 @@ export function DoublePrompt({ game }: { game: GameState }) {
           </p>
         </div>
       ) : (
-        <div className="rounded-lg border border-dashed border-line/60 py-4 text-center text-[12px] text-muted">
+        <div className="rounded-lg border border-dashed border-line/60 py-2.5 text-center text-[12px] text-muted">
           等待 {asked?.name ?? '玩家'} 决定是否追加…
         </div>
       )}

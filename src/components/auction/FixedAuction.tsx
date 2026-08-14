@@ -15,8 +15,8 @@ export function FixedAuction({ game }: { game: GameState }) {
   if (auction.fixedPrice === undefined) {
     const isMe = isLocalActor(game, mySeat, auctioneer.id);
     return (
-      <div className="space-y-3">
-        <div className="rounded-lg border border-line/60 bg-ink/50 p-3 text-center">
+      <div className="space-y-2">
+        <div className="rounded-lg border border-line/60 bg-ink/50 p-2.5 text-center">
           <div className="text-[11px] uppercase tracking-widest text-muted">等待定价</div>
           <div className="mt-1 text-sm text-cream">
             <span className="font-semibold text-gold">{auctioneer.name}</span> 正在为这幅作品标价
@@ -40,7 +40,7 @@ export function FixedAuction({ game }: { game: GameState }) {
             hint={`你的现金 ${money(auctioneer.cash)}，定价不能超过它`}
           />
         ) : (
-          <div className="rounded-lg border border-dashed border-line/60 py-4 text-center text-[12px] text-muted">
+          <div className="rounded-lg border border-dashed border-line/60 py-2.5 text-center text-[12px] text-muted">
             {auctioneer.name} 正在思考定价…
           </div>
         )}
@@ -56,9 +56,9 @@ export function FixedAuction({ game }: { game: GameState }) {
   const affordable = !!asker && asker.cash >= price;
 
   return (
-    <div className="space-y-3">
+    <div className="space-y-2">
       {/* 价签 */}
-      <div className="relative overflow-hidden rounded-lg border border-gold/40 bg-gradient-to-br from-[#221c0e] to-ink p-4 text-center">
+      <div className="relative overflow-hidden rounded-lg border border-gold/40 bg-gradient-to-br from-[#221c0e] to-ink p-3 text-center">
         <div className="text-[11px] uppercase tracking-[0.24em] text-muted">
           {auctioneer.name} 标价
         </div>
@@ -111,7 +111,7 @@ export function FixedAuction({ game }: { game: GameState }) {
           </button>
         </div>
       ) : (
-        <div className="rounded-lg border border-dashed border-line/60 py-4 text-center text-[12px] text-muted">
+        <div className="rounded-lg border border-dashed border-line/60 py-2.5 text-center text-[12px] text-muted">
           等待 {asker?.name ?? '玩家'} 决定…
         </div>
       )}

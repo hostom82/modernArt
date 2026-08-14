@@ -16,9 +16,9 @@ export function HiddenAuction({ game }: { game: GameState }) {
   const covered = mustHandoff && !handoffAcked;
 
   return (
-    <div className="space-y-3">
+    <div className="space-y-2">
       {/* 提交进度 */}
-      <div className="rounded-lg border border-line/60 bg-ink/50 p-3">
+      <div className="rounded-lg border border-line/60 bg-ink/50 p-2.5">
         <div className="mb-2 flex items-baseline justify-between">
           <span className="text-[11px] uppercase tracking-widest text-muted">提交进度</span>
           <span className="stat text-[11px] text-muted">
@@ -58,8 +58,8 @@ export function HiddenAuction({ game }: { game: GameState }) {
         covered ? (
           <HandoffScreen name={me.name} onReady={ackHandoff} />
         ) : (
-          <div className="space-y-2.5">
-            <div className="flex items-center justify-between rounded-lg bg-ink/40 px-3 py-2">
+          <div className="space-y-2">
+            <div className="flex items-center justify-between rounded-lg bg-ink/40 px-2.5 py-1.5">
               <span className="text-[12px] text-cream">
                 <span className="font-semibold text-gold">{me.name}</span> 的秘密报价
               </span>
@@ -79,7 +79,7 @@ export function HiddenAuction({ game }: { game: GameState }) {
           </div>
         )
       ) : (
-        <div className="rounded-lg border border-dashed border-line/60 py-4 text-center text-[12px] text-muted">
+        <div className="rounded-lg border border-dashed border-line/60 py-2.5 text-center text-[12px] text-muted">
           等待其他买家密封报价…
         </div>
       )}

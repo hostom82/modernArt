@@ -19,9 +19,9 @@ export function OneOfferAuction({ game }: { game: GameState }) {
     : undefined;
 
   return (
-    <div className="space-y-3">
+    <div className="space-y-2">
       {/* 报价顺序 */}
-      <div className="rounded-lg border border-line/60 bg-ink/50 p-3">
+      <div className="rounded-lg border border-line/60 bg-ink/50 p-2.5">
         <div className="mb-2 flex items-baseline justify-between">
           <span className="text-[11px] uppercase tracking-widest text-muted">报价顺序</span>
           <span className="text-[11px] text-muted">拍卖师最后决定</span>
@@ -74,7 +74,7 @@ export function OneOfferAuction({ game }: { game: GameState }) {
       </div>
 
       {/* 当前最高 */}
-      <div className="flex items-center justify-between rounded-lg bg-ink/40 px-3 py-2">
+      <div className="flex items-center justify-between rounded-lg bg-ink/40 px-2.5 py-1.5">
         <span className="text-[11px] text-muted">当前最高</span>
         <span className="stat text-lg font-bold text-gold">
           {auction.currentHighestBid > 0 ? money(auction.currentHighestBid) : '尚无出价'}
@@ -98,7 +98,7 @@ export function OneOfferAuction({ game }: { game: GameState }) {
           }
         />
       ) : (
-        <div className="rounded-lg border border-dashed border-line/60 py-4 text-center text-[12px] text-muted">
+        <div className="rounded-lg border border-dashed border-line/60 py-2.5 text-center text-[12px] text-muted">
           等待 {asker?.name ?? '玩家'} 报价…
         </div>
       )}

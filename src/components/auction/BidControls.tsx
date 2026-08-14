@@ -58,11 +58,11 @@ export function BidControls({
   }
 
   return (
-    <div className="space-y-2.5">
+    <div className="space-y-2">
       {/* 数值区 */}
       <div className="flex items-center gap-2">
         <button
-          className="btn-ghost h-10 w-10 shrink-0 !px-0 text-lg"
+          className="btn-ghost h-9 w-9 shrink-0 !px-0 text-lg"
           onClick={() => commit(value - 1)}
           disabled={disabled || !canBid || value <= min}
           aria-label="减少 1"
@@ -84,7 +84,7 @@ export function BidControls({
             inputMode="numeric"
             disabled={disabled || !canBid}
             className={cx(
-              'h-10 w-full rounded-lg border bg-ink/70 px-7 text-center font-mono text-lg font-bold outline-none transition',
+              'h-9 w-full rounded-lg border bg-ink/70 px-7 text-center font-mono text-lg font-bold outline-none transition',
               valid ? 'border-line/70 text-gold focus:border-gold' : 'border-red-500/50 text-red-300',
             )}
           />
@@ -94,7 +94,7 @@ export function BidControls({
         </div>
 
         <button
-          className="btn-ghost h-10 w-10 shrink-0 !px-0 text-lg"
+          className="btn-ghost h-9 w-9 shrink-0 !px-0 text-lg"
           onClick={() => commit(value + 1)}
           disabled={disabled || !canBid || value >= max}
           aria-label="增加 1"
@@ -108,7 +108,7 @@ export function BidControls({
         {steps.map((s) => (
           <button
             key={s}
-            className="btn-ghost flex-1 !px-1 py-1 text-[11px]"
+            className="btn-ghost flex-1 !px-1 py-0.5 text-[11px]"
             onClick={() => commit(value + s)}
             disabled={disabled || !canBid || value + s > max}
           >
@@ -116,7 +116,7 @@ export function BidControls({
           </button>
         ))}
         <button
-          className="btn-ghost flex-1 !px-1 py-1 text-[11px]"
+          className="btn-ghost flex-1 !px-1 py-0.5 text-[11px]"
           onClick={() => commit(max)}
           disabled={disabled || !canBid || value === max}
           title={`全部 ${money(max)}`}
