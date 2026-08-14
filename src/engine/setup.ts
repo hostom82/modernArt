@@ -65,7 +65,7 @@ export function createInitialState(opts: StartGameOptions): GameState {
       humanCount,
       aiLevel: opts.aiLevel,
       seed,
-      openAuctionSeconds: opts.openAuctionSeconds ?? 8,
+      openAuctionSeconds: opts.openAuctionSeconds ?? 20,
     },
     players,
     artists: createArtists(),
